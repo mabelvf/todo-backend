@@ -38,10 +38,12 @@ describe('CategoryService', () => {
     jest.clearAllMocks();
   });
 
+  //Test 1
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
+  //Test 2 
   describe('findAll', () => {
     it('should return an array of categories for a user', async () => {
       repository.findAll.mockResolvedValue([mockCategory]);
@@ -53,6 +55,7 @@ describe('CategoryService', () => {
     });
   });
 
+  //Test 3
   describe('getOne', () => {
     it('should return a category by id', async () => {
       repository.findById.mockResolvedValue(mockCategory);
@@ -63,7 +66,7 @@ describe('CategoryService', () => {
       expect(repository.findById).toHaveBeenCalledWith('cat-123');
     });
 
-    it('should throw NotFoundException if category does not exist', async () => {
+    it('throws NotFoundException when category not found', async () => {
       repository.findById.mockResolvedValue(null);
 
       await expect(service.getOne('non-existent-id')).rejects.toThrow(
@@ -71,7 +74,7 @@ describe('CategoryService', () => {
       );
     });
   });
-
+//Test 4
   describe('create', () => {
     it('should create and return a category', async () => {
       const dto = { name: 'Trabajo', color: '#FF5733' };
